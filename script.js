@@ -1,23 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');
   
-    // 获取当前HTML文件的链接，并修改后缀为 "zc.html"
-    const currentURL = window.location.href; 
-    const zcURL = currentURL.replace(/\/[^\/]*$/, '/zc.html');
-  
-    // 使用给出的 URL 读取 zc 文件内容并插入到 <main id="posts-container"> 标签内
-    fetch(zcURL)
-      .then(response => response.text())
-      .then(zcPosts => {
-        console.log('Fetched posts successfully');
-        const postsContainer = document.getElementById('posts-container');
-        postsContainer.innerHTML = zcPosts;
-        initializePosts();
-        setDefaultImageIfEmpty();
-      })
-      .catch(error => {
-        console.error('Error fetching the posts:', error);
-      });
+    
   
     // 初始化帖子数据
     function initializePosts() {
