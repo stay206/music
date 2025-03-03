@@ -5,20 +5,19 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     overflow-x: hidden;
-}
-
-/* 隐藏不同浏览器的滚动条 */
-body::-webkit-scrollbar {
+  }
+  
+  /* 隐藏滚动条 */
+  body::-webkit-scrollbar {
     display: none;
-}
-
-body {
+  }
+  body {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
-
-/* 头部样式，带有渐变背景动画 */
-header {
+  }
+  
+  /* 头部样式（渐变背景动画） */
+  header {
     background: linear-gradient(270deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
@@ -31,70 +30,57 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-}
-
-/* 渐变动画关键帧 */
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* 头部标题样式 */
-header h1 {
+  }
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* 头部标题 */
+  header h1 {
     margin: 0;
     padding: 0;
-}
-
-/* 导航栏样式 */
-nav {
+  }
+  
+  /* 导航栏 */
+  nav {
     display: flex;
     align-items: center;
-}
-
-nav a {
+  }
+  nav a {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-}
-
-nav a:hover {
+  }
+  nav a:hover {
     background-color: #feb47b;
     color: black;
-}
-
-nav a.active {
+  }
+  nav a.active {
     background-color: #ff7e5f;
     color: white;
-}
-
-/* 搜索输入框样式 */
-header input {
+  }
+  
+  /* 搜索输入框 */
+  header input {
     padding: 5px;
     width: 200px;
     border: none;
     border-radius: 5px;
     position: relative;
     left: -30px;
-}
-
-/* 主内容区域样式，包含顶部填充 */
-main {
+  }
+  
+  /* 主内容 */
+  main {
     padding: 80px 20px 20px;
-}
-
-/* 帖子容器样式 */
-.post {
+  }
+  
+  /* 帖子样式 */
+  .post {
     display: flex;
     align-items: flex-start;
     background-color: #fff;
@@ -104,106 +90,72 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     cursor: pointer;
-}
-
-/* 帖子图片样式 */
-.post img {
+  }
+  .post img {
     width: 130px;
     height: 190px;
     margin-right: 20px;
     border-radius: 5px;
-}
-
-/* 帖子内容区域样式 */
-.post-content {
-    flex: 1;
-}
-
-/* 帖子标题样式 */
-.post-title {
-    display: flex;
-    flex-direction: column;
-    /* 垂直排列标题和副标题 */
-    align-items: flex-start;
-    /* 左对齐标题和副标题 */
-}
-
-.post-title h2 {
+  }
+  .post-content { flex: 1; }
+  .post-title h2 {
     margin: 0;
     margin-bottom: 5px;
-    /* 添加底部外边距以分隔标题和副标题 */
-}
-
-.post-title h3 {
+  }
+  .post-title h3 {
     margin: 0;
     font-size: 0.9em;
     color: #666;
-}
-
-/* 帖子标签样式，调整到图片旁边并底部对齐 */
-.post-tags {
+  }
+  .post-tags {
     align-self: flex-end;
-    /* 与图片底部对齐 */
     margin-left: 20px;
-    /* 右侧间距 */
     font-size: 0.8em;
     color: #888;
-}
-
-/* 标签的椭圆外框样式 */
-.post-tags .tag {
+  }
+  .post-tags .tag {
     display: inline-block;
-    /* 使标签成为行内块元素 */
     padding: 5px 10px;
-    /* 内边距，调整椭圆形状 */
     border: 1px solid #888;
-    /* 边框颜色与标签文字颜色相同 */
     border-radius: 15px;
-    /* 圆角边框，形成椭圆 */
     margin-right: 5px;
-    /* 标签之间的间距 */
     font-size: 0.8em;
     color: #888;
-}
-
-/* 分页容器样式 */
-.pagination {
+  }
+  
+  /* 分页 */
+  .pagination {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-}
-
-.pagination button {
+  }
+  .pagination button {
     padding: 10px;
     margin: 0 5px;
     border: none;
     background-color: #333;
     color: #fff;
     cursor: pointer;
-}
-
-.pagination button.disabled {
+  }
+  .pagination button.disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
-
-/* 禁用分页按钮容器样式 */
-.disable-pagination {
+  }
+  .disable-pagination {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-}
-
-.disable-pagination button {
+  }
+  .disable-pagination button {
     padding: 10px;
     border: none;
     background-color: #808080;
     color: #fff;
     cursor: pointer;
-}
-
-/* 右侧工具栏样式 */
-.t-right-bar {
+  }
+  
+  /* 右侧工具栏 */
+  .t-right-bar {
     position: fixed;
     right: 0;
     bottom: 10%;
@@ -211,9 +163,8 @@ main {
     height: 48px;
     z-index: 1000;
     cursor: pointer;
-}
-
-.t-right-bar>div {
+  }
+  .t-right-bar > div {
     float: left;
     height: 36px;
     margin-bottom: 1px;
@@ -224,15 +175,16 @@ main {
     white-space: nowrap;
     font-size: 13px;
     line-height: 36px;
-    font-style: normal;
     background-color: #aaa;
     background-repeat: no-repeat;
     background-position: 12px center;
-    transition: transform .2s cubic-bezier(.215, .61, .355, 1), padding .2s cubic-bezier(.215, .61, .355, 1), margin .2s cubic-bezier(.215, .61, .355, 1), background-color .2s cubic-bezier(.215, .61, .355, 1);
-}
-
-.t-right-bar>div.active,
-.t-right-bar>div:hover {
+    transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+                padding 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+                margin 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+                background-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .t-right-bar > div.active,
+  .t-right-bar > div:hover {
     transform: translateX(-100%);
     padding-left: 45px;
     padding-right: 10px;
@@ -240,183 +192,128 @@ main {
     background-color: #23a0e1;
     text-decoration: none;
     color: #fff;
-}
-
-.t-right-bar .t-bar-rocket {
+  }
+  .t-right-bar .t-bar-rocket {
     background-image: url("https://stay206.github.io/xinfan/images/返回顶部.svg");
     background-position: 10px center;
-}
-
-.t-right-bar .t-bar-support {
+  }
+  .t-right-bar .t-bar-support {
     background-image: url("https://stay206.github.io/xinfan/images/18禁.svg");
     background-position: 10px center;
-}
-
-/* 页脚样式 */
-footer {
+  }
+  
+  /* 页脚 */
+  footer {
     background-color: #f4f4f4;
     color: #888;
     text-align: center;
     padding: 20px 0;
-    position: relative;
-    bottom: 0;
     width: 100%;
-}
-
-footer .icons {
+  }
+  footer .copyright {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-footer .icons li {
-    margin: 0 10px;
-}
-
-footer .icons a {
-    color: #888;
-    text-decoration: none;
-    font-size: 24px;
-}
-
-footer .copyright {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-footer .copyright li {
+    font-size: 14px;
+  }
+  footer .copyright li {
     margin: 0 5px;
-}
-
-footer .copyright a {
+  }
+  footer .copyright a {
     color: #888;
     text-decoration: none;
     transition: color 0.3s;
-}
-
-footer .copyright a:hover {
+  }
+  footer .copyright a:hover {
     color: #000;
-}
-
-/* 隐藏的帖子样式 */
-.hidden {
-    display: none;
-}
-
-/* 媒体查询：当屏幕宽度小于等于768px（即移动设备）时应用这些样式 */
-@media only screen and (max-width: 768px) {
-
-    /* 删除标题部分 */
-    header h1 {
-        display: none;
+  }
+  
+  /* 弹窗样式 */
+  .button1 {
+    transition-duration: 0.4s;
+    padding: 16px 32px;
+    background-color: white;
+    line-height: 1;
+    text-align: center;
+    color: black;
+    border: 2px solid #4caf50;
+    border-radius: 5px;
+  }
+  .button1:hover {
+    background-color: #4caf50;
+    color: white;
+  }
+  .web_notice {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .web_notice > div {
+    width: 90%;
+    max-width: 550px;
+    background: #fff;
+    border-radius: 40px;
+    padding: 20px;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .web_notice > div {
+      padding: 50px 40px;
     }
-
-    /* 导航栏左对齐 */
-    nav {
-        justify-content: flex-start;
-    }
-
-    nav a {
-        text-align: left;
-        padding: 10px;
-    }
-
-    /* 搜索输入框的样式 */
-    header input {
-        margin-left: 10px;
-        /* 调整输入框的位置使其与导航栏一致 */
-    }
-
-    /* 调整帖子图片大小 */
-    .post img {
-        width: 100px;
-        height: 160px;
-    }
-
-    /* 缩小文字大小 */
-    .post-title h2 {
-        font-size: 1.2em;
-    }
-
-    .post-title h3 {
-        font-size: 0.8em;
-    }
-
-    .post-tags .tag {
-        font-size: 0.7em;
-    }
-}
-
-/* Banner */
-
-#banner {
+  }
+  
+  /* 横幅（Banner） */
+  #banner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* 确保内容水平居中 */
     cursor: default;
     height: 100vh;
     min-height: 35em;
     overflow: hidden;
     position: relative;
     text-align: center;
-    background-image: url('images/banner.jpg');
+    background-image: url("images/banner.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    /* 将文字颜色改为白色 */
-}
-
-#banner:before {
-    content: '';
+  }
+  #banner:before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    /* 添加一层透明浅黑色图层 */
     z-index: 0;
-}
-
-#banner .inner {
+  }
+  #banner .inner {
     position: relative;
     z-index: 1;
-    /* 确保内容在黑色图层之上 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* 确保内容水平居中 */
     height: 100%;
-    /* 确保内容垂直居中 */
-}
-
-#banner h2,
-#banner p,
-#banner a {
+  }
+  #banner h2,
+  #banner p,
+  #banner a {
     color: white;
-    /* 确保所有文字颜色为白色 */
-}
-
-#banner h2 {
-    -moz-transform: scale(1);
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
+  }
+  #banner h2 {
     transform: scale(1);
-    -moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease;
-    -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
-    -ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
     transition: transform 0.5s ease, opacity 0.5s ease;
     display: inline-block;
     font-size: 1.75em;
@@ -424,57 +321,34 @@ footer .copyright a:hover {
     padding: 0.35em 1em;
     position: relative;
     z-index: 1;
-}
-
-#banner h2:before,
-#banner h2:after {
-    -moz-transition: width 0.85s ease;
-    -webkit-transition: width 0.85s ease;
-    -ms-transition: width 0.85s ease;
-    transition: width 0.85s ease;
-    -moz-transition-delay: 0.25s;
-    -webkit-transition-delay: 0.25s;
-    -ms-transition-delay: 0.25s;
-    transition-delay: 0.25s;
+  }
+  #banner h2:before,
+  #banner h2:after {
+    transition: width 0.85s ease 0.25s;
     background: #fff;
-    content: '';
+    content: "";
     display: block;
     height: 2px;
     position: absolute;
     width: 100%;
-}
-
-#banner h2:before {
+  }
+  #banner h2:before {
     top: 0;
     left: 0;
-}
-
-#banner h2:after {
+  }
+  #banner h2:after {
     bottom: 0;
     right: 0;
-}
-
-#banner p {
+  }
+  #banner p {
     letter-spacing: 0.225em;
     text-transform: uppercase;
-}
-
-#banner p a {
+  }
+  #banner p a {
     color: inherit;
-}
-
-#banner .more {
-    -moz-transition: -moz-transform 0.75s ease, opacity 0.75s ease;
-    -webkit-transition: -webkit-transform 0.75s ease, opacity 0.75s ease;
-    -ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
-    transition: transform 0.75s ease, opacity 0.75s ease;
-    -moz-transition-delay: 3.5s;
-    -webkit-transition-delay: 3.5s;
-    -ms-transition-delay: 3.5s;
-    transition-delay: 3.5s;
-    -moz-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
+  }
+  #banner .more {
+    transition: transform 0.75s ease 3.5s, opacity 0.75s ease 3.5s;
     transform: translateY(0);
     border: none;
     bottom: 0;
@@ -492,162 +366,83 @@ footer .copyright a:hover {
     text-transform: uppercase;
     width: 16em;
     z-index: 1;
-}
-
-#banner .more:after {
+  }
+  #banner .more:after {
     background-image: url("assets/css/images/arrow.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     bottom: 4em;
-    content: '';
+    content: "";
     display: block;
     height: 1.5em;
     left: 50%;
     margin: 0 0 0 -0.75em;
     position: absolute;
     width: 1.5em;
-}
-
-#banner:after {
-    -moz-pointer-events: none;
-    -webkit-pointer-events: none;
-    -ms-pointer-events: none;
-    pointer-events: none;
-    -moz-transition: opacity 3s ease-in-out;
-    -webkit-transition: opacity 3s ease-in-out;
-    -ms-transition: opacity 3s ease-in-out;
-    transition: opacity 3s ease-in-out;
-    -moz-transition-delay: 1.25s;
-    -webkit-transition-delay: 1.25s;
-    -ms-transition-delay: 1.25s;
-    transition-delay: 1.25s;
-    content: '';
-    background: #2e3842;
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-}
-
-#banner .button2 {
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    padding: 16px 32px;
-    background-color: Transparent;
-    line-height: 1;
-    text-align: center;
-    color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-}
-
-#banner .button2:hover {
-    background-color: #2c3e50;
-    color: white;
-}
-
-@media screen and (max-width: 736px) {
-
+  }
+  @media screen and (max-width: 736px) {
     #banner {
-        padding: 7em 3em 5em 3em;
-        height: auto;
-        min-height: 0;
+      padding: 7em 3em 5em 3em;
+      height: auto;
+      min-height: 0;
     }
-
     #banner h2 {
-        font-size: 1.25em;
+      font-size: 1.25em;
     }
-
     #banner br {
-        display: none;
+      display: none;
     }
-
     #banner .more {
-        display: none;
+      display: none;
     }
-
-}
-
-body.is-loading #banner h2 {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -ms-transform: scale(0.95);
+  }
+  body.is-loading #banner h2 {
     transform: scale(0.95);
     opacity: 0;
-}
-
-body.is-loading #banner h2:before,
-body.is-loading #banner h2:after {
+  }
+  body.is-loading #banner h2:before,
+  body.is-loading #banner h2:after {
     width: 0;
-}
-
-body.is-loading #banner .more {
-    -moz-transform: translateY(8.5em);
-    -webkit-transform: translateY(8.5em);
-    -ms-transform: translateY(8.5em);
+  }
+  body.is-loading #banner .more {
     transform: translateY(8.5em);
     opacity: 0;
-}
-
-body.is-loading #banner:after {
+  }
+  body.is-loading #banner:after {
     opacity: 1;
-}
-
-/* 弹窗 */
-.button1 {
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    padding: 16px 32px;
-    background-color: white;
-    line-height: 1;
-    text-align: center;
-    color: black;
-    border: 2px solid #4CAF50;
-    border-radius: 5px;
-}
-
-.button1:hover {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.web_notice {
+  }
+  
+  /* 导航栏被激活链接样式 */
+  .active {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* 下载弹窗样式 */
+  .download-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 99999;
+    background: rgba(0,0,0,0.5);
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-
-.web_notice>div {
-    width: 90%;
-    max-width: 550px;
-    background: #FFF;
-    border-radius: 40px;
+    align-items: center;
+    z-index: 10000;
+  }
+  .download-modal-content {
+    background: #fff;
     padding: 20px;
+    border-radius: 8px;
     text-align: center;
-}
-
-@media (min-width: 768px) {
-    .web_notice>div {
-        padding: 50px 40px;
-    }
-}
-
-/* 切换导航栏链接的样式 */
-.active {
-    color: red;
-    /* 根据需要修改样式 */
-    font-weight: bold;
-}
-
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .download-modal-content button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
