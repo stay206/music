@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOM fully loaded and parsed');
 
-  // 获取当前HTML文件的链接，并修改后缀为 "zc.html"
-  const currentURL = window.location.href; 
+  // 获取当前 HTML 文件链接，并修改为 "zc.html"
+  const currentURL = window.location.href;
   const zcURL = currentURL.replace(/\/[^\/]*$/, '/zc.html');
 
-  // 读取 zc.html 文件内容并插入到 <main id="posts-container"> 标签内
+  // 读取 zc.html 内容，并插入 posts-container 中
   fetch(zcURL)
     .then(response => response.text())
     .then(zcPosts => {
@@ -76,15 +76,11 @@ document.addEventListener('DOMContentLoaded', function () {
     posts.forEach(post => {
       let title = post.getAttribute('data-title').toLowerCase();
       let tags = post.getAttribute('data-tags').toLowerCase();
-      if (title.includes(filter) || tags.includes(filter)) {
-        post.style.display = '';
-      } else {
-        post.style.display = 'none';
-      }
+      post.style.display = (title.includes(filter) || tags.includes(filter)) ? '' : 'none';
     });
   });
 
-  // 日期排序（升序）
+  // 按日期升序排序帖子
   function sortPostsByDate() {
     let postsContainer = document.getElementById('posts-container');
     let posts = Array.from(postsContainer.getElementsByClassName('post'));
@@ -127,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showPage(1);
   }
 
-  // 切换分页功能
+  // 切换分页功能的启用/禁用
   let paginationDisabled = false;
   document.getElementById('disable-pagination-btn').addEventListener('click', function () {
     const posts = document.querySelectorAll('.post');
@@ -149,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   document.getElementById('back-to-top').addEventListener('click', gotop);
 
-  // 修改：点击帖子时弹出下载选择弹窗而非直接跳转
+  // 点击帖子时弹出下载选择弹窗（仅依据三个属性，不再使用 data-link）
   function addPostClickEvents() {
     document.querySelectorAll('.post').forEach(post => {
       post.addEventListener('click', function (e) {
@@ -159,11 +155,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 弹出下载选择弹窗
+  // 弹出下载选择弹窗函数
   function showDownloadModal(post) {
-    let linkLossless = post.getAttribute('data-link-lossless') || post.getAttribute('data-link');
-    let linkHigh = post.getAttribute('data-link-high') || post.getAttribute('data-link');
-    let linkNormal = post.getAttribute('data-link-normal') || post.getAttribute('data-link');
+    let linkLossless = post.getAttribute('data-link-lossless');
+    let linkHigh = post.getAttribute('data-link-high');
+    let linkNormal = post.getAttribute('data-link-normal');
 
     const modal = document.createElement('div');
     modal.className = 'download-modal';
@@ -192,11 +188,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(modal);
   }
 
-  // 表格填充，用于“关于”页面（如果需要）
+  // 表格填充（用于关于页面）
   function populateTable() {
     const tableBody = document.querySelector('tbody');
     const posts = Array.from(document.querySelectorAll('.post'));
-    
+
     const specialPosts = posts.filter(post => {
       const dateElement = post.querySelector('.date-text');
       return dateElement && (dateElement.textContent.includes('春') ||
@@ -205,26 +201,24 @@ document.addEventListener('DOMContentLoaded', function () {
                               dateElement.textContent.includes('冬'));
     });
 
-    posts
-      .filter(post => !specialPosts.includes(post))
-      .forEach(post => {
-        const titleElement = post.querySelector('.post-title h2');
-        const subtitleElement = post.querySelector('.post-title h3');
-        const firstTagElement = post.querySelector('.tag');
-        const date = post.getAttribute('data-date');
-        const weekday = getWeekday(date);
-        const episodeElement = post.querySelector('.jishu');
-        const updateElement = post.querySelector('div[style*="display: none"]');
+    posts.filter(post => !specialPosts.includes(post)).forEach(post => {
+      const titleElement = post.querySelector('.post-title h2');
+      const subtitleElement = post.querySelector('.post-title h3');
+      const firstTagElement = post.querySelector('.tag');
+      const date = post.getAttribute('data-date');
+      const weekday = getWeekday(date);
+      const episodeElement = post.querySelector('.jishu');
+      const updateElement = post.querySelector('div[style*="display: none"]');
 
-        const title = titleElement ? titleElement.textContent.trim() : "";
-        const subtitle = subtitleElement ? subtitleElement.textContent.trim() : "";
-        const firstTag = firstTagElement ? firstTagElement.textContent.trim() : "";
-        const episodeCount = episodeElement ? episodeElement.textContent.trim() : "";
-        const updateDate = updateElement ? updateElement.textContent.trim() : "";
-        const displayDate = date.endsWith('-99') ? date.substring(0, 7) : date;
+      const title = titleElement ? titleElement.textContent.trim() : "";
+      const subtitle = subtitleElement ? subtitleElement.textContent.trim() : "";
+      const firstTag = firstTagElement ? firstTagElement.textContent.trim() : "";
+      const episodeCount = episodeElement ? episodeElement.textContent.trim() : "";
+      const updateDate = updateElement ? updateElement.textContent.trim() : "";
+      const displayDate = date.endsWith('-99') ? date.substring(0, 7) : date;
 
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
           <td class="left-align" data-label="中文名">${title}</td>
           <td class="left-align" data-label="原名">${subtitle}</td>
           <td class="nowrap" data-label="类型">${firstTag}</td>
@@ -233,11 +227,11 @@ document.addEventListener('DOMContentLoaded', function () {
           <td class="nowrap" data-label="国内更新时间">${updateDate}</td>
           <td class="nowrap" data-label="集数">${episodeCount}</td>
         `;
-        if (post.classList.contains('hidden')) {
-          newRow.classList.add('hidden');
-        }
-        tableBody.appendChild(newRow);
-      });
+      if (post.classList.contains('hidden')) {
+        newRow.classList.add('hidden');
+      }
+      tableBody.appendChild(newRow);
+    });
 
     specialPosts.forEach(post => {
       const titleElement = post.querySelector('.post-title h2');
@@ -271,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 导航显示与隐藏（首页和时间表）
+  // 显示/隐藏 “首页” 与 “时间表”
   const homeLink = document.querySelector('nav a[href="#home"]');
   const aboutLink = document.querySelector('nav a[href="#about"]');
   const postsContainer = document.getElementById('posts-container');
@@ -300,7 +294,6 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(error => {
         console.error('Error loading table:', error);
       });
-
     postsContainer.style.display = 'none';
     pagination.style.display = 'none';
     disablePaginationButton.style.display = 'none';
@@ -313,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('.t-bar-support').addEventListener('click', function () {
     let posts = document.querySelectorAll('.post');
     let tableRows = tableContainer ? tableContainer.querySelectorAll('tbody tr') : [];
-
     if (this.textContent === '显示') {
       posts.forEach(post => post.classList.remove('hidden'));
       tableRows.forEach(row => row.classList.remove('hidden'));
@@ -337,12 +329,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // 初始调用排序和分页
+  // 初始调用排序与分页
   sortPostsByDate();
   paginatePosts();
 });
 
-// 切换导航栏链接激活状态
+// 导航链接激活状态切换
 document.addEventListener('DOMContentLoaded', function () {
   const homeLink = document.getElementById('home-link');
   const aboutLink = document.getElementById('about-link');
@@ -373,7 +365,6 @@ function setRandomGradient() {
   const color2 = getRandomColor();
   const color3 = getRandomColor();
   const gradient = `linear-gradient(270deg, ${color1}, ${color2}, ${color3}, ${color1})`;
-
   const header = document.querySelector('header');
   header.style.background = gradient;
   header.style.backgroundSize = '600% 600%';
