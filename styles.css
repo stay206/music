@@ -87,7 +87,7 @@ body {
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     position: relative;
     cursor: pointer;
   }
@@ -98,15 +98,8 @@ body {
     border-radius: 5px;
   }
   .post-content { flex: 1; }
-  .post-title h2 {
-    margin: 0;
-    margin-bottom: 5px;
-  }
-  .post-title h3 {
-    margin: 0;
-    font-size: 0.9em;
-    color: #666;
-  }
+  .post-title h2 { margin: 0; margin-bottom: 5px; }
+  .post-title h3 { margin: 0; font-size: 0.9em; color: #666; }
   .post-tags {
     align-self: flex-end;
     margin-left: 20px;
@@ -178,10 +171,10 @@ body {
     background-color: #aaa;
     background-repeat: no-repeat;
     background-position: 12px center;
-    transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
-                padding 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
-                margin 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
-                background-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: transform 0.2s cubic-bezier(0.215,0.61,0.355,1),
+                padding 0.2s cubic-bezier(0.215,0.61,0.355,1),
+                margin 0.2s cubic-bezier(0.215,0.61,0.355,1),
+                background-color 0.2s cubic-bezier(0.215,0.61,0.355,1);
   }
   .t-right-bar > div.active,
   .t-right-bar > div:hover {
@@ -217,17 +210,13 @@ body {
     align-items: center;
     font-size: 14px;
   }
-  footer .copyright li {
-    margin: 0 5px;
-  }
+  footer .copyright li { margin: 0 5px; }
   footer .copyright a {
     color: #888;
     text-decoration: none;
     transition: color 0.3s;
   }
-  footer .copyright a:hover {
-    color: #000;
-  }
+  footer .copyright a:hover { color: #000; }
   
   /* 弹窗样式 */
   .button1 {
@@ -250,7 +239,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     z-index: 99999;
     display: flex;
     align-items: center;
@@ -265,9 +254,7 @@ body {
     text-align: center;
   }
   @media (min-width: 768px) {
-    .web_notice > div {
-      padding: 50px 40px;
-    }
+    .web_notice > div { padding: 50px 40px; }
   }
   
   /* 横幅（Banner） */
@@ -295,7 +282,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     z-index: 0;
   }
   #banner .inner {
@@ -309,9 +296,7 @@ body {
   }
   #banner h2,
   #banner p,
-  #banner a {
-    color: white;
-  }
+  #banner a { color: white; }
   #banner h2 {
     transform: scale(1);
     transition: transform 0.5s ease, opacity 0.5s ease;
@@ -332,21 +317,13 @@ body {
     position: absolute;
     width: 100%;
   }
-  #banner h2:before {
-    top: 0;
-    left: 0;
-  }
-  #banner h2:after {
-    bottom: 0;
-    right: 0;
-  }
+  #banner h2:before { top: 0; left: 0; }
+  #banner h2:after { bottom: 0; right: 0; }
   #banner p {
     letter-spacing: 0.225em;
     text-transform: uppercase;
   }
-  #banner p a {
-    color: inherit;
-  }
+  #banner p a { color: inherit; }
   #banner .more {
     transition: transform 0.75s ease 3.5s, opacity 0.75s ease 3.5s;
     transform: translateY(0);
@@ -382,38 +359,18 @@ body {
     width: 1.5em;
   }
   @media screen and (max-width: 736px) {
-    #banner {
-      padding: 7em 3em 5em 3em;
-      height: auto;
-      min-height: 0;
-    }
-    #banner h2 {
-      font-size: 1.25em;
-    }
-    #banner br {
-      display: none;
-    }
-    #banner .more {
-      display: none;
-    }
+    #banner { padding: 7em 3em 5em 3em; height: auto; min-height: 0; }
+    #banner h2 { font-size: 1.25em; }
+    #banner br { display: none; }
+    #banner .more { display: none; }
   }
-  body.is-loading #banner h2 {
-    transform: scale(0.95);
-    opacity: 0;
-  }
+  body.is-loading #banner h2 { transform: scale(0.95); opacity: 0; }
   body.is-loading #banner h2:before,
-  body.is-loading #banner h2:after {
-    width: 0;
-  }
-  body.is-loading #banner .more {
-    transform: translateY(8.5em);
-    opacity: 0;
-  }
-  body.is-loading #banner:after {
-    opacity: 1;
-  }
+  body.is-loading #banner h2:after { width: 0; }
+  body.is-loading #banner .more { transform: translateY(8.5em); opacity: 0; }
+  body.is-loading #banner:after { opacity: 1; }
   
-  /* 导航栏被激活链接样式 */
+  /* 导航栏激活链接 */
   .active {
     color: red;
     font-weight: bold;
@@ -426,7 +383,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
