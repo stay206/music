@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showPage(1);
   }
 
-  // 切换分页功能的启用/禁用
+  // 切换分页功能
   let paginationDisabled = false;
   document.getElementById('disable-pagination-btn').addEventListener('click', function () {
     const posts = document.querySelectorAll('.post');
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   document.getElementById('back-to-top').addEventListener('click', gotop);
 
-  // 点击帖子时弹出下载选择弹窗（仅依据三个属性，不再使用 data-link）
+  // 点击帖子时弹出下载选择弹窗（仅依据三个属性）
   function addPostClickEvents() {
     document.querySelectorAll('.post').forEach(post => {
       post.addEventListener('click', function (e) {
@@ -188,141 +188,40 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(modal);
   }
 
-  // 表格填充（用于关于页面）
-  function populateTable() {
-    const tableBody = document.querySelector('tbody');
-    const posts = Array.from(document.querySelectorAll('.post'));
-
-    const specialPosts = posts.filter(post => {
-      const dateElement = post.querySelector('.date-text');
-      return dateElement && (dateElement.textContent.includes('春') ||
-                              dateElement.textContent.includes('夏') ||
-                              dateElement.textContent.includes('秋') ||
-                              dateElement.textContent.includes('冬'));
-    });
-
-    posts.filter(post => !specialPosts.includes(post)).forEach(post => {
-      const titleElement = post.querySelector('.post-title h2');
-      const subtitleElement = post.querySelector('.post-title h3');
-      const firstTagElement = post.querySelector('.tag');
-      const date = post.getAttribute('data-date');
-      const weekday = getWeekday(date);
-      const episodeElement = post.querySelector('.jishu');
-      const updateElement = post.querySelector('div[style*="display: none"]');
-
-      const title = titleElement ? titleElement.textContent.trim() : "";
-      const subtitle = subtitleElement ? subtitleElement.textContent.trim() : "";
-      const firstTag = firstTagElement ? firstTagElement.textContent.trim() : "";
-      const episodeCount = episodeElement ? episodeElement.textContent.trim() : "";
-      const updateDate = updateElement ? updateElement.textContent.trim() : "";
-      const displayDate = date.endsWith('-99') ? date.substring(0, 7) : date;
-
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-          <td class="left-align" data-label="中文名">${title}</td>
-          <td class="left-align" data-label="原名">${subtitle}</td>
-          <td class="nowrap" data-label="类型">${firstTag}</td>
-          <td class="nowrap" data-label="播放时间">${displayDate}</td>
-          <td class="nowrap" data-label="放送星期">${weekday}</td>
-          <td class="nowrap" data-label="国内更新时间">${updateDate}</td>
-          <td class="nowrap" data-label="集数">${episodeCount}</td>
-        `;
-      if (post.classList.contains('hidden')) {
-        newRow.classList.add('hidden');
-      }
-      tableBody.appendChild(newRow);
-    });
-
-    specialPosts.forEach(post => {
-      const titleElement = post.querySelector('.post-title h2');
-      const subtitleElement = post.querySelector('.post-title h3');
-      const firstTagElement = post.querySelector('.tag');
-      const dateElement = post.querySelector('.date-text');
-      const episodeElement = post.querySelector('.jishu');
-      const updateElement = post.querySelector('div[style*="display: none"]');
-
-      const title = titleElement ? titleElement.textContent.trim() : "";
-      const subtitle = subtitleElement ? subtitleElement.textContent.trim() : "";
-      const firstTag = firstTagElement ? firstTagElement.textContent.trim() : "";
-      const episodeCount = episodeElement ? episodeElement.textContent.trim() : "";
-      const updateDate = updateElement ? updateElement.textContent.trim() : "";
-      const season = dateElement ? dateElement.textContent.trim() : "";
-
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-          <td class="left-align" data-label="中文名">${title}</td>
-          <td class="left-align" data-label="原名">${subtitle}</td>
-          <td class="nowrap" data-label="类型">${firstTag}</td>
-          <td class="nowrap" data-label="播放时间">${season}</td>
-          <td class="nowrap" data-label="放送星期"></td>
-          <td class="nowrap" data-label="国内更新时间">${updateDate}</td>
-          <td class="nowrap" data-label="集数">${episodeCount}</td>
-        `;
-      if (post.classList.contains('hidden')) {
-        newRow.classList.add('hidden');
-      }
-      tableBody.appendChild(newRow);
-    });
-  }
-
-  // 显示/隐藏 “首页” 与 “时间表”
+  // “关于”按钮点击后，仅隐藏帖子展示并弹出提示（无需表格填充）
   const homeLink = document.querySelector('nav a[href="#home"]');
   const aboutLink = document.querySelector('nav a[href="#about"]');
   const postsContainer = document.getElementById('posts-container');
   const pagination = document.getElementById('pagination');
   const disablePaginationButton = document.getElementById('disable-pagination-btn');
-  let tableContainer;
 
   function showHome() {
     postsContainer.style.display = '';
     pagination.style.display = '';
     disablePaginationButton.style.display = '';
-    if (tableContainer && tableContainer.parentNode) {
-      tableContainer.parentNode.removeChild(tableContainer);
-    }
   }
 
   function showAbout() {
-    fetch('https://stay206.github.io/xinfan/bg')
-      .then(response => response.text())
-      .then(data => {
-        tableContainer = document.createElement('div');
-        tableContainer.innerHTML = data;
-        banner.insertAdjacentElement('afterend', tableContainer);
-        populateTable();
-      })
-      .catch(error => {
-        console.error('Error loading table:', error);
-      });
+    // 取消帖子与分页显示，并提醒用户
     postsContainer.style.display = 'none';
     pagination.style.display = 'none';
     disablePaginationButton.style.display = 'none';
+    alert("关于页面功能已禁用。");
   }
 
   homeLink.addEventListener('click', showHome);
   aboutLink.addEventListener('click', showAbout);
 
-  // 切换帖子显示/隐藏状态
+  // 切换帖子显示/隐藏状态（仅对帖子操作）
   document.querySelector('.t-bar-support').addEventListener('click', function () {
     let posts = document.querySelectorAll('.post');
-    let tableRows = tableContainer ? tableContainer.querySelectorAll('tbody tr') : [];
     if (this.textContent === '显示') {
       posts.forEach(post => post.classList.remove('hidden'));
-      tableRows.forEach(row => row.classList.remove('hidden'));
       this.textContent = '隐藏';
     } else {
       posts.forEach(post => {
         if (post.getAttribute('data-hidden') === 'true') {
           post.classList.add('hidden');
-        }
-      });
-      tableRows.forEach(row => {
-        let title = row.querySelector('td').textContent.trim();
-        let matchingPost = Array.from(posts).find(post =>
-          post.querySelector('.post-title h2').textContent.trim() === title
-        );
-        if (matchingPost && matchingPost.getAttribute('data-hidden') === 'true') {
-          row.classList.add('hidden');
         }
       });
       this.textContent = '显示';
@@ -334,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
   paginatePosts();
 });
 
-// 导航链接激活状态切换
+// 切换导航栏链接激活状态
 document.addEventListener('DOMContentLoaded', function () {
   const homeLink = document.getElementById('home-link');
   const aboutLink = document.getElementById('about-link');

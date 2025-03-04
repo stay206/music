@@ -16,6 +16,7 @@
     <h1>2025年10月新番</h1>
     <nav>
       <a href="#home" id="home-link" class="active">首页</a>
+      <!-- “时间表”导航仍保留，但在 script.js 中点击后不再展示表格 -->
       <a href="#about" id="about-link">时间表</a>
     </nav>
     <input type="text" id="search" placeholder="搜索..." />
@@ -64,7 +65,7 @@
         点击对应内容查看PV<br />
       </div>
       <div style="text-align: center;">
-        <b onclick="javascript:document.querySelector('.web_notice').remove()">
+        <b onclick="document.querySelector('.web_notice').remove()">
           <button class="button1">我知道了</button>
         </b>
       </div>
@@ -85,7 +86,7 @@
   </div>
   <!-- 右侧工具栏 -->
   <div class="t-right-bar">
-    <div class="t-bar-support" data-open-online-form onclick="togglePosts()">显示</div>
+    <div class="t-bar-support" onclick="togglePosts()">显示</div>
     <div class="t-bar-rocket" id="back-to-top" onClick="gotop()">返回顶部</div>
   </div>
   <!-- 页脚 -->
