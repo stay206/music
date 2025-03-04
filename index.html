@@ -11,67 +11,45 @@
 </head>
 
 <body>
-  <!-- 头部部分，包含标题、导航和搜索输入框 -->
+  <!-- 头部部分 -->
   <header>
     <h1>墨云音乐</h1>
     <nav>
       <a href="#home" id="home-link" class="active">首页</a>
-      <!-- “时间表”导航仍保留，但脚本中点击后不再展示表格 -->
       <a href="#about" id="about-link">时间表</a>
     </nav>
     <input type="text" id="search" placeholder="搜索..." />
   </header>
 
-  <!-- 横幅部分 -->
+  <!-- 横幅轮播图 -->
   <section id="banner">
-    <div class="inner">
-      <h2>2025年秋季新番</h2>
-      <p>
-        收录2024年9月-11月日漫新番信息<br />
-        数据来源<a href="https://bgm.tv/" target="_blank">bangumi番组计划</a><br />
-        推荐使用电脑查看<br />
-        制作者 <a href="https://stay206.github.io/portfolio-master/portfolio.html">墨云</a>.
-      </p>
-      <a href="https://stay206.github.io/xinfan/fan" target="_blank">
-        <button class="button2">更多新番资讯</button>
-      </a>
+    <div class="slider">
+      <!-- 每个slide的数据链接存储在data-link属性中 -->
+      <div class="slide active" data-link="https://example.com/link1">
+        <img src="images/slider1.jpg" alt="轮播图1" />
+        <h2>2025年秋季新番</h2>
+      </div>
+      <div class="slide" data-link="https://example.com/link2">
+        <img src="images/slider2.jpg" alt="轮播图2" />
+        <h2>2025年秋季新番</h2>
+      </div>
+      <div class="slide" data-link="https://example.com/link3">
+        <img src="images/slider3.jpg" alt="轮播图3" />
+        <h2>2025年秋季新番</h2>
+      </div>
+      <div class="slide" data-link="https://example.com/link4">
+        <img src="images/slider4.jpg" alt="轮播图4" />
+        <h2>2025年秋季新番</h2>
+      </div>
+      <div class="slide" data-link="https://example.com/link5">
+        <img src="images/slider5.jpg" alt="轮播图5" />
+        <h2>2025年秋季新番</h2>
+      </div>
+      <!-- 左右切换按钮 -->
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
     </div>
-    <a href="#one" class="more scrolly">详情</a>
   </section>
-
-  <!-- 弹窗代码开始 -->
-  <div class="web_notice">
-    <div>
-      <h3 style="font-weight: bold; text-align: center; font-size: 30px;">
-        <p style="color: black;">网站通知</p>
-      </h3>
-      <div style="font-size: 16px; margin-top: 26px; line-height: 30px; color: #999;">
-        <li>最后更新：<span id="lastUpdated"></span>.</li>
-        <script>
-          // 最后更新网页时间
-          const lastUpdatedElement = document.getElementById("lastUpdated");
-          const lastUpdatedDate = new Date(document.lastModified);
-          const options = {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric",
-          };
-          const formattedDate = lastUpdatedDate.toLocaleDateString("zh-CN", options);
-          lastUpdatedElement.innerHTML = formattedDate;
-        </script>
-        点击对应内容查看PV<br />
-      </div>
-      <div style="text-align: center;">
-        <b onclick="document.querySelector('.web_notice').remove()">
-          <button class="button1">我知道了</button>
-        </b>
-      </div>
-    </div>
-  </div>
-  <!-- 弹窗代码结束 -->
 
   <!-- 包含帖子的主要内容区域 -->
   <main id="posts-container">

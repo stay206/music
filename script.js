@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (dateElement) {
         let dateText = dateElement.textContent.trim();
         let dateMatches = dateText.match(/(\d{4})年(\d{1,2})月(?:(\d{1,2})日?)?/);
-        if (dateText.includes('春') || dateText.includes('夏') || dateText.includes('秋') || dateText.includes('冬')) {
+        if (dateText.includes('春') || dateText.includes('夏') ||
+            dateText.includes('秋') || dateText.includes('冬')) {
           post.setAttribute('data-date', '');
           post.setAttribute('data-sort-key', '9999-99-99');
         } else if (dateMatches) {
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 搜索功能 && 隐藏/显示横幅部分
+  // 搜索功能 & 隐藏/显示横幅部分
   document.getElementById('search').addEventListener('input', function () {
     let filter = this.value.toLowerCase();
     let posts = document.querySelectorAll('.post');
@@ -152,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   document.getElementById('back-to-top').addEventListener('click', gotop);
 
-  // 点击帖子时弹出下载选择弹窗（仅依据三个属性）
+  // 点击帖子时弹出下载选择弹窗（依据三个属性）
   function addPostClickEvents() {
     document.querySelectorAll('.post').forEach(post => {
       post.addEventListener('click', function (e) {
@@ -195,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(modal);
   }
 
-  // “关于”按钮点击后，仅隐藏帖子展示，并给出提示信息
+  // “关于”按钮点击后，仅隐藏帖子展示，并提示
   const homeLink = document.querySelector('nav a[href="#home"]');
   const aboutLink = document.querySelector('nav a[href="#about"]');
   const postsContainer = document.getElementById('posts-container');
@@ -207,14 +208,12 @@ document.addEventListener('DOMContentLoaded', function () {
     pagination.style.display = '';
     disablePaginationButton.style.display = '';
   }
-
   function showAbout() {
     postsContainer.style.display = 'none';
     pagination.style.display = 'none';
     disablePaginationButton.style.display = 'none';
     alert("关于页面功能已禁用。");
   }
-
   homeLink.addEventListener('click', showHome);
   aboutLink.addEventListener('click', showAbout);
 
@@ -243,19 +242,17 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const homeLink = document.getElementById('home-link');
   const aboutLink = document.getElementById('about-link');
-
   homeLink.addEventListener('click', function () {
     homeLink.classList.add('active');
     aboutLink.classList.remove('active');
   });
-
   aboutLink.addEventListener('click', function () {
     aboutLink.classList.add('active');
     homeLink.classList.remove('active');
   });
 });
 
-// 随机生成渐变背景
+// 随机生成渐变背景（头部）
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -264,7 +261,6 @@ function getRandomColor() {
   }
   return color;
 }
-
 function setRandomGradient() {
   const color1 = getRandomColor();
   const color2 = getRandomColor();
@@ -275,11 +271,56 @@ function setRandomGradient() {
   header.style.backgroundSize = '600% 600%';
   header.style.animation = 'gradient 15s ease infinite';
 }
-
 document.addEventListener('DOMContentLoaded', setRandomGradient);
-
 function getWeekday(dateString) {
   const date = new Date(dateString);
   const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
   return isNaN(date.getUTCDay()) ? "" : weekdays[date.getUTCDay()];
 }
+
+/* ========== 新增：Banner轮播图代码，包括自动播放 ========== */
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('#banner .slide');
+  const prevButton = document.querySelector('#banner .prev');
+  const nextButton = document.querySelector('#banner .next');
+  let currentSlide = 0;
+  // 定义显示幻灯片函数
+  function showSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  // 左右按钮点击事件
+  prevButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    showSlide(currentSlide - 1);
+    resetAutoplay();
+  });
+  nextButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    showSlide(currentSlide + 1);
+    resetAutoplay();
+  });
+  // 点击每个 slide 内的 h2 可跳转链接
+  slides.forEach(slide => {
+    const title = slide.querySelector('h2');
+    title.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const link = slide.getAttribute('data-link');
+      if (link) {
+        window.location.href = link;
+      }
+    });
+  });
+  // 自动播放：每隔 5 秒切换一次幻灯片
+  let autoplayInterval = setInterval(() => {
+    showSlide(currentSlide + 1);
+  }, 5000);
+  // 当用户主动操作时重置自动播放计时器
+  function resetAutoplay() {
+    clearInterval(autoplayInterval);
+    autoplayInterval = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
+  }
+});
