@@ -188,7 +188,7 @@ main {
 }
 /* 修改为 QQ 图标 */
 .t-right-bar .t-bar-support {
-  background-image: url("https://cdn.icon-icons.com/icons2/2108/PNG/512/qq_logo_icon_130022.png");
+  background-image: url("image/QQ.svg");
   background-position: 10px center;
   background-size: 24px 24px;
 }
