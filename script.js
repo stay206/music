@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 搜索功能
+  // 搜索功能 && 隐藏/显示横幅部分
   document.getElementById('search').addEventListener('input', function () {
     let filter = this.value.toLowerCase();
     let posts = document.querySelectorAll('.post');
@@ -78,6 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
       let tags = post.getAttribute('data-tags').toLowerCase();
       post.style.display = (title.includes(filter) || tags.includes(filter)) ? '' : 'none';
     });
+    // 当搜索框有内容时隐藏横幅，否则显示横幅
+    const banner = document.getElementById('banner');
+    if (this.value.trim() !== '') {
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'block';
+    }
   });
 
   // 按日期升序排序帖子
@@ -188,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(modal);
   }
 
-  // “关于”按钮点击后，仅隐藏帖子展示并弹出提示（无需表格填充）
+  // “关于”按钮点击后，仅隐藏帖子展示，并给出提示信息
   const homeLink = document.querySelector('nav a[href="#home"]');
   const aboutLink = document.querySelector('nav a[href="#about"]');
   const postsContainer = document.getElementById('posts-container');
@@ -202,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function showAbout() {
-    // 取消帖子与分页显示，并提醒用户
     postsContainer.style.display = 'none';
     pagination.style.display = 'none';
     disablePaginationButton.style.display = 'none';
@@ -212,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
   homeLink.addEventListener('click', showHome);
   aboutLink.addEventListener('click', showAbout);
 
-  // 切换帖子显示/隐藏状态（仅对帖子操作）
+  // 切换帖子显示/隐藏状态
   document.querySelector('.t-bar-support').addEventListener('click', function () {
     let posts = document.querySelectorAll('.post');
     if (this.textContent === '显示') {
