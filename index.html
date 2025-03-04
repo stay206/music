@@ -16,6 +16,7 @@
     <h1>墨云音乐</h1>
     <nav>
       <a href="#home" id="home-link" class="active">首页</a>
+      <!-- “时间表”导航仍保留 -->
       <a href="#about" id="about-link">时间表</a>
     </nav>
     <input type="text" id="search" placeholder="搜索..." />
@@ -24,7 +25,7 @@
   <!-- 横幅轮播图 -->
   <section id="banner">
     <div class="slider">
-      <!-- 每个slide的数据链接存储在data-link属性中 -->
+      <!-- 每个 slide 的 data-link 用于点击 h2 跳转对应链接 -->
       <div class="slide active" data-link="https://example.com/link1">
         <img src="images/slider1.jpg" alt="轮播图1" />
         <h2>2025年秋季新番</h2>
@@ -62,11 +63,14 @@
   <div class="disable-pagination">
     <button id="disable-pagination-btn">显示全部</button>
   </div>
+
   <!-- 右侧工具栏 -->
   <div class="t-right-bar">
-    <div class="t-bar-support" onclick="togglePosts()">显示</div>
+    <!-- “联系”按钮（已移除原 togglePosts() 调用） -->
+    <div class="t-bar-support">联系</div>
     <div class="t-bar-rocket" id="back-to-top" onClick="gotop()">返回顶部</div>
   </div>
+
   <!-- 页脚 -->
   <footer id="footer">
     <ul class="copyright">

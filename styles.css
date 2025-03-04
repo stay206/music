@@ -166,7 +166,7 @@ main {
   line-height: 36px;
   background-color: #aaa;
   background-repeat: no-repeat;
-  background-position: 12px center;
+  background-position: 10px center;
   transition: transform 0.2s cubic-bezier(0.215,0.61,0.355,1),
               padding 0.2s cubic-bezier(0.215,0.61,0.355,1),
               margin 0.2s cubic-bezier(0.215,0.61,0.355,1),
@@ -186,9 +186,11 @@ main {
   background-image: url("https://stay206.github.io/xinfan/images/返回顶部.svg");
   background-position: 10px center;
 }
+/* 修改为 QQ 图标 */
 .t-right-bar .t-bar-support {
-  background-image: url("https://stay206.github.io/xinfan/images/18禁.svg");
+  background-image: url("https://cdn.icon-icons.com/icons2/2108/PNG/512/qq_logo_icon_130022.png");
   background-position: 10px center;
+  background-size: 24px 24px;
 }
 
 /* 页脚 */
@@ -279,7 +281,7 @@ footer .copyright a:hover { color: #000; }
   cursor: pointer;
 }
 
-/* 前后切换按钮 */
+/* 左右切换按钮 */
 .prev, .next {
   position: absolute;
   top: 50%;

@@ -217,20 +217,9 @@ document.addEventListener('DOMContentLoaded', function () {
   homeLink.addEventListener('click', showHome);
   aboutLink.addEventListener('click', showAbout);
 
-  // 切换帖子显示/隐藏状态
+  // 右下角“联系”按钮：点击跳转到 QQ 联系链接
   document.querySelector('.t-bar-support').addEventListener('click', function () {
-    let posts = document.querySelectorAll('.post');
-    if (this.textContent === '显示') {
-      posts.forEach(post => post.classList.remove('hidden'));
-      this.textContent = '隐藏';
-    } else {
-      posts.forEach(post => {
-        if (post.getAttribute('data-hidden') === 'true') {
-          post.classList.add('hidden');
-        }
-      });
-      this.textContent = '显示';
-    }
+    window.location.href = 'https://wpa.qq.com/msgrd?v=3&uin=123456&Site=QQ&Menu=yes';
   });
 
   // 初始调用排序与分页
@@ -278,7 +267,7 @@ function getWeekday(dateString) {
   return isNaN(date.getUTCDay()) ? "" : weekdays[date.getUTCDay()];
 }
 
-/* ========== 新增：Banner轮播图代码，包括自动播放 ========== */
+/* ========== Banner轮播图代码，包括自动播放 ========== */
 document.addEventListener('DOMContentLoaded', function() {
   const slides = document.querySelectorAll('#banner .slide');
   const prevButton = document.querySelector('#banner .prev');
@@ -316,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let autoplayInterval = setInterval(() => {
     showSlide(currentSlide + 1);
   }, 5000);
-  // 当用户主动操作时重置自动播放计时器
+  // 用户操作时重置自动播放计时器
   function resetAutoplay() {
     clearInterval(autoplayInterval);
     autoplayInterval = setInterval(() => {
